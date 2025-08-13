@@ -1,0 +1,23 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #faf8f3;
+}
+.hero {
+  display: flex;
+  align-items: center;
+  padding: 2rem;
+  background: #fff2de;
+}
+.hero-img { max-width: 300px; border-radius: 24px; }
+.services, .destinations, .testimonials, .footer {
+  margin: 2rem;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 20px #f5f0e3;
+}
+.service-list, .destination-list { display: flex; gap: 1rem; }
+.service-card, .destination-card, .testimonial-card { flex: 1; background: #faf8f3; padding: 1rem; border-radius: 8px; }
+.footer-links { display: flex; gap: 1rem; margin-top: 1rem; }
