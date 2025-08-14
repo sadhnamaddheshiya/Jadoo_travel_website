@@ -1,332 +1,307 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { useMediaQuery } from "react-responsive";
 import heroImg from "../assets/girl.jpg";
-import jadooLogoImg from "../assets/jadoo-logo.png";
-import playButtonImg from "../assets/play-button.png";
+import logoImg from "../assets/jadoo-logo.png";
+import playIcon from "../assets/play-button.png";
 
-function JadooLogo() {
-  return (
-    <img
-      src={jadooLogoImg}
-      alt="Jadoo Logo"
-      style={{
-        height: "40px",
-        width: "auto",
-        userSelect: "none",
-      }}
-    />
-  );
-}
-
-function HeaderNav({ isMobile, isTablet }) {
+export default function HeaderHero() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const isMobile = useMediaQuery({ maxWidth: 640 });
+  const isTablet = useMediaQuery({ minWidth: 641, maxWidth: 1024 });
+
+  const navLinks = ["Destinations", "Hotels", "Flights", "Bookings", "Login"];
 
   return (
-    <nav
+    <header
       style={{
-        width: "100%",
-        background: "#fff",
-        padding: isMobile ? "15px" : "22px 5vw 12px 5vw",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        borderBottom: "1px solid #f4ede9",
-        boxSizing: "border-box",
-        position: "relative",
-        zIndex: 3,
-        flexWrap: "wrap",
+        background: "linear-gradient(to right, #f6e7ff 50%, #fff2de 50%)",
       }}
     >
-      <JadooLogo />
-
-      {/* Hamburger for mobile */}
-      {isMobile && (
-        <div
-          style={{
-            cursor: "pointer",
-            display: "flex",
-            flexDirection: "column",
-            gap: "4px",
-          }}
-          onClick={() => setMenuOpen(!menuOpen)}
-        >
-          <span style={{ width: "25px", height: "3px", background: "#181e4b" }} />
-          <span style={{ width: "25px", height: "3px", background: "#181e4b" }} />
-          <span style={{ width: "25px", height: "3px", background: "#181e4b" }} />
-        </div>
-      )}
-
-      {/* Navigation */}
-      <ul
+      <div
         style={{
-          display: isMobile
-            ? menuOpen
-              ? "flex"
-              : "none"
-            : "flex",
-          flexDirection: isMobile ? "column" : "row",
-          gap: isMobile ? "1rem" : "2.6rem",
-          alignItems: "center",
-          listStyle: "none",
-          padding: isMobile ? "1rem" : 0,
-          margin: 0,
-          flex: isMobile ? "100%" : 1,
-          justifyContent: isMobile ? "flex-start" : "center",
-          background: isMobile ? "#fff" : "transparent",
-          width: isMobile ? "100%" : "auto",
+          maxWidth: "1200px",
+          margin: "0 auto",
+          padding: isMobile ? "15px" : "22px 5vw 0 5vw",
+          display: "flex",
+          flexDirection: "column",
         }}
       >
-        <li style={{ fontWeight: 600, color: "#181e4b", cursor: "pointer" }}>Destinations</li>
-        <li style={{ fontWeight: 600, color: "#181e4b", cursor: "pointer" }}>Hotels</li>
-        <li style={{ fontWeight: 600, color: "#181e4b", cursor: "pointer" }}>Flights</li>
-        <li style={{ fontWeight: 600, color: "#181e4b", cursor: "pointer" }}>Bookings</li>
-
-        {/* Add Login/Signup/EN inside mobile menu too */}
-        {isMobile && (
-          <>
-            <li style={{ color: "#181e4b", fontWeight: 600, cursor: "pointer" }}>Login</li>
-            <li>
-              <button
+        {/* Navigation */}
+        <nav
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            paddingBottom: "16px",
+            borderBottom: "1px solid #f4ede9",
+            flexWrap: "wrap",
+            gap: "1rem",
+            position: "relative",
+          }}
+        >
+          <img src={logoImg} alt="Logo" style={{ height: "40px" }} />
+          {!isMobile ? (
+            <ul
+              style={{
+                display: "flex",
+                gap: isTablet ? "1.5rem" : "2.5rem",
+                listStyle: "none",
+                margin: 0,
+                padding: 0,
+                alignItems: "center",
+              }}
+            >
+              {navLinks.map((item) => (
+                <li
+                  key={item}
+                  style={{
+                    padding: "8px 18px",
+                    borderRadius: "6px",
+                    cursor: "pointer",
+                  }}
+                >
+                  {item}
+                </li>
+              ))}
+              <li
                 style={{
-                  border: "1.5px solid #181e4b",
-                  background: "none",
-                  fontWeight: 600,
-                  borderRadius: "8px",
-                  padding: "7px 25px",
-                  color: "#181e4b",
-                  fontSize: "1rem",
+                  background: "#ff6b35",
+                  color: "#fff",
+                  padding: "8px 18px",
+                  borderRadius: "6px",
                   cursor: "pointer",
                 }}
               >
                 Sign up
-              </button>
-            </li>
-            <li>
+              </li>
+              <li>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "0.33rem",
+                    cursor: "pointer",
+                    color: "#181e4b",
+                    fontWeight: 600,
+                    fontSize: "1rem",
+                  }}
+                >
+                  EN <span style={{ fontSize: "1.13em" }}>▼</span>
+                </div>
+              </li>
+            </ul>
+          ) : (
+            <>
+              {/* Mobile menu button */}
               <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "0.33rem",
-                  cursor: "pointer",
-                  color: "#181e4b",
-                  fontWeight: 600,
-                  fontSize: "1rem",
-                }}
+                style={{ fontSize: "1.8rem", cursor: "pointer" }}
+                onClick={() => setMenuOpen(!menuOpen)}
               >
-                EN <span style={{ fontSize: "1.13em" }}>▼</span>
+                ☰
               </div>
-            </li>
-          </>
-        )}
-      </ul>
 
-      {/* Right side actions for desktop */}
-      {!isMobile && (
-        <ul
+              {/* Mobile dropdown */}
+              {menuOpen && (
+                <ul
+                  style={{
+                    position: "absolute",
+                    top: "60px",
+                    right: "0",
+                    background: "#fff",
+                    listStyle: "none",
+                    padding: "1rem",
+                    margin: 0,
+                    boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
+                    borderRadius: "8px",
+                    width: "200px",
+                    zIndex: 10,
+                  }}
+                >
+                  {navLinks.map((item) => (
+                    <li
+                      key={item}
+                      style={{
+                        padding: "10px 0",
+                        borderBottom: "1px solid #eee",
+                        cursor: "pointer",
+                      }}
+                    >
+                      {item}
+                    </li>
+                  ))}
+
+                  {/* Sign up */}
+                  <li
+                    style={{
+                      background: "#ff6b35",
+                      color: "#fff",
+                      padding: "10px",
+                      borderRadius: "6px",
+                      textAlign: "center",
+                      marginTop: "10px",
+                      cursor: "pointer",
+                    }}
+                  >
+                    Sign up
+                  </li>
+
+                  {/* EN ▼ Language Selector */}
+                  <li
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "0.33rem",
+                      cursor: "pointer",
+                      color: "#181e4b",
+                      fontWeight: 600,
+                      fontSize: "1rem",
+                      marginTop: "12px",
+                    }}
+                  >
+                    EN <span style={{ fontSize: "1.13em" }}>▼</span>
+                  </li>
+
+
+
+                </ul>
+              )}
+            </>
+          )}
+        </nav>
+
+        {/* Hero Section */}
+        <section
           style={{
             display: "flex",
-            gap: "1.4rem",
             alignItems: "center",
-            listStyle: "none",
-            padding: 0,
-            margin: 0,
+            justifyContent: "space-between",
+            padding: isMobile
+              ? "20px 0"
+              : isTablet
+              ? "40px 0"
+              : "48px 0",
+            flexDirection: isMobile ? "column" : "row",
+            textAlign: isMobile ? "center" : "left",
           }}
         >
-          <li style={{ color: "#181e4b", fontWeight: 600, cursor: "pointer" }}>Login</li>
-          <li>
-            <button
+          {/* Left Text */}
+          <div
+            style={{
+              flex: 1,
+              maxWidth: isMobile || isTablet ? "100%" : "50%",
+              paddingRight: isMobile ? "0" : "20px",
+            }}
+          >
+            <p
               style={{
-                border: "1.5px solid #181e4b",
-                background: "none",
+                color: "#DF6951",
                 fontWeight: 600,
-                borderRadius: "8px",
-                padding: "7px 25px",
-                color: "#181e4b",
-                fontSize: "1rem",
-                cursor: "pointer",
+                fontSize: isMobile ? "0.85rem" : isTablet ? "1.2rem" : "20px",
+                margin: 0,
+                letterSpacing: "1px",
               }}
             >
-              Sign up
-            </button>
-          </li>
-          <li>
+              BEST DESTINATIONS AROUND THE WORLD
+            </p>
+            <h1
+              style={{
+                fontSize: isMobile ? "1.8rem" : isTablet ? "3rem" : "84px",
+                color: "#181E4B",
+                fontFamily: "Volkhov, serif",
+                fontWeight: 700,
+                margin: "10px 0 20px 0",
+                lineHeight: isMobile ? "1.2" : "1.1",
+              }}
+            >
+              Travel, enjoy
+              
+              and live a new
+              
+              and full life
+            </h1>
+            <p
+              style={{
+                color: "#5E6282",
+                fontFamily: "Poppins, sans-serif",
+                fontSize: isMobile ? "14px" : "16px",
+                marginBottom: "24px",
+                lineHeight: "1.4",
+              }}
+            >
+              Built Wicket longer admire do barton vanity itself do in it.
+              Preferred to sportsmen it engrossed listening. Park gate sell
+              they west hard for the.
+            </p>
             <div
               style={{
                 display: "flex",
                 alignItems: "center",
-                gap: "0.33rem",
-                cursor: "pointer",
-                color: "#181e4b",
-                fontWeight: 600,
-                fontSize: "1rem",
+                gap: "1rem",
+                justifyContent: isMobile ? "center" : "flex-start",
               }}
             >
-              EN <span style={{ fontSize: "1.13em" }}>▼</span>
-            </div>
-          </li>
-        </ul>
-      )}
-    </nav>
-  );
-}
-
-function Header() {
-  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-
-  useEffect(() => {
-    const handleResize = () => setScreenWidth(window.innerWidth);
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  const isMobile = screenWidth <= 768;
-  const isTablet = screenWidth > 768 && screenWidth <= 1024;
-
-  return (
-    <header>
-      <HeaderNav isMobile={isMobile} isTablet={isTablet} />
-
-      <div
-        className="hero-section"
-        style={{
-          minHeight: "520px",
-          background: "#fff2de",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          padding: isMobile ? "20px" : "48px 5vw 0 5vw",
-          flexWrap: "wrap",
-          textAlign: isMobile ? "center" : "left",
-        }}
-      >
-        <div style={{ maxWidth: "530px", flex: "1 1 300px" }}>
-          <p
-            style={{
-              color: "#DF6951",
-              fontWeight: 600,
-              fontSize: isMobile ? "0.9rem" : "1.1rem",
-              margin: 0,
-              letterSpacing: "1px",
-            }}
-          >
-            BEST DESTINATIONS AROUND THE WORLD
-          </p>
-          <h1
-            style={{
-           
-            fontSize: isMobile ? "1.8rem" : "2.8rem",
-            width: "545",
-            height: "267",
-
-            angle: "0 deg",
-            opacity: "1",
-            top: "271px",
-            left: "150px",
-            }}
-          >
-            Travel, enjoy<br />
-            and live a new<br />
-            and full life
-          </h1>
-          <p
-            style={{
-              color: "#5E6282",
-              fontSize: isMobile ? "0.95rem" : "1.08rem",
-              lineHeight: "1.6",
-              marginBottom: "2.2rem",
-            }}
-          >
-            Life is either a daring adventure or nothing at all.
-            Because the world is a book, and those who do not travel read only one page.
-          </p>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: isMobile ? "column" : "row",
-              gap: "1.2rem",
-              alignItems: "center",
-              justifyContent: isMobile ? "center" : "flex-start",
-            }}
-          >
-            <button
-              style={{
-                background: "#f1a501",
-                color: "#fff",
-                fontWeight: "600",
-                border: "none",
-                borderRadius: "8px",
-                padding: "0.8rem 1.9rem",
-                fontSize: "1.07rem",
-                cursor: "pointer",
-                boxShadow: "0 4px 16px rgba(241,165,1,0.18)",
-              }}
-            >
-              Find out more
-            </button>
-            <button
-              style={{
-                display: "flex",
-                alignItems: "center",
-                background: "none",
-                border: "none",
-                color: "#686d8a",
-                fontWeight: "500",
-                fontSize: "1rem",
-                cursor: "pointer",
-              }}
-            >
-              <span
+              <button
+                style={{
+                  background: "#ff6b35",
+                  color: "#fff",
+                  padding: isMobile ? "8px 18px" : "10px 24px",
+                  border: "none",
+                  borderRadius: "6px",
+                  fontSize: isMobile ? "0.9rem" : "1rem",
+                  cursor: "pointer",
+                }}
+              >
+                Find out more
+              </button>
+              <div
                 style={{
                   display: "flex",
                   alignItems: "center",
-                  justifyContent: "center",
-                  background: "#fff",
-                  borderRadius: "50%",
-                  width: "2.2em",
-                  height: "2.2em",
-                  boxShadow: "0 2px 10px #eee",
-                  marginRight: "0.7em",
+                  cursor: "pointer",
                 }}
               >
                 <img
-                  src={playButtonImg}
+                  src={playIcon}
                   alt="Play"
                   style={{
-                    width: "250%",
-                    height: "250%",
-                    objectFit: "contain",
+                    width: isMobile ? "38px" : "45px",
+                    marginRight: "8px",
                   }}
                 />
-              </span>
-              Play Demo
-            </button>
+                <span
+                  style={{
+                    fontWeight: 500,
+                    fontSize: isMobile ? "0.9rem" : "1rem",
+                  }}
+                >
+                  Play Demo
+                </span>
+              </div>
+            </div>
           </div>
-        </div>
 
-        <div
-          style={{
-            minWidth: isMobile ? "100%" : "700px",
-            maxWidth: isMobile ? "100%" : "780px",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            marginTop: isMobile ? "20px" : "0",
-          }}
-        >
-          <img
-            src={heroImg}
-            alt="Traveler"
+          {/* Right Image */}
+          <div
             style={{
-              width: isMobile ? "90%" : "500px",
-              height: isMobile ? "auto" : "500px",
-              objectFit: "cover",
-              borderRadius: "1.4rem",
-              marginBottom: "1.2rem",
+              flex: 1,
+              maxWidth: isMobile || isTablet ? "100%" : "50%",
+              display: "flex",
+              justifyContent: "center",
+              marginTop: isMobile ? "20px" : "0",
             }}
-          />
-        </div>
+          >
+            <img
+              src={heroImg}
+              alt="Hero"
+              style={{
+                width: isMobile ? "85%" : "100%",
+                height: "auto",
+                borderRadius: "20px",
+              }}
+            />
+          </div>
+        </section>
       </div>
     </header>
   );
 }
-
-export default Header;
