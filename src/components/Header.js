@@ -160,9 +160,6 @@ export default function HeaderHero() {
                   >
                     EN <span style={{ fontSize: "1.13em" }}>▼</span>
                   </li>
-
-
-
                 </ul>
               )}
             </>
