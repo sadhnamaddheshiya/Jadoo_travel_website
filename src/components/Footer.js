@@ -16,25 +16,39 @@ function Footer() {
   };
 
   return (
-    <footer 
-    style={{ 
-      background: "#f5f4f7", 
-      paddingTop: "56px", 
-      paddingBottom: "40px" }}>
-      {/* Responsive Styles */}
+    <footer style={{ background: "#f5f4f7", padding: "56px 20px 40px 20px" }}>
+      {/* Responsive CSS */}
       <style>
         {`
+          .footer-main {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 40px;
+            max-width: 1100px;
+            margin: 0 auto;
+          }
+
+          .footer-links {
+            display: flex;
+            gap: 58px;
+          }
+
+          .footer-social {
+            min-width: 180px;
+            text-align: center;
+          }
+
           /* Tablet */
           @media (max-width: 1024px) {
             .footer-main {
-              flex-direction: row;
-              flex-wrap: wrap;
-              gap: 30px;
               justify-content: center;
               text-align: center;
             }
             .footer-links {
+              flex-wrap: wrap;
               gap: 40px;
+              justify-content: center;
             }
           }
 
@@ -49,11 +63,11 @@ function Footer() {
             }
             .subscribe-banner form {
               flex-direction: column;
+              gap: 12px;
             }
             .footer-main {
               flex-direction: column;
               align-items: center;
-              text-align: center;
               gap: 40px;
             }
             .footer-links {
@@ -82,7 +96,6 @@ function Footer() {
           textAlign: "center",
         }}
       >
-        {/* Share Icon */}
         <div
           style={{
             position: "absolute",
@@ -98,35 +111,15 @@ function Footer() {
             boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
           }}
         >
-          <img src={shareImg} alt="Share" 
-            style={{ 
-              width: "45px", 
-              height: "45px" 
-              }} 
-          />
+          <img src={shareImg} alt="Share" style={{ width: "45px", height: "45px" }} />
         </div>
 
-        <h3
-          style={{
-            fontSize: "1.18rem",
-            fontWeight: 600,
-            color: "#392d5b",
-            marginBottom: "1.3rem",
-          }}
-        >
+        <h3 style={{ fontSize: "1.18rem", fontWeight: 600, color: "#392d5b", marginBottom: "1.3rem" }}>
           Subscribe to get information, latest news and other <br />
           interesting offers about Jadoo
         </h3>
 
-        <form
-          onSubmit={handleSubscribe}
-          style={{
-            display: "flex",
-            gap: "12px",
-            maxWidth: "480px",
-            margin: "0 auto",
-          }}
-        >
+        <form onSubmit={handleSubscribe} style={{ display: "flex", gap: "12px", maxWidth: "480px", margin: "0 auto" }}>
           <input
             type="email"
             placeholder="Your email"
@@ -164,37 +157,17 @@ function Footer() {
       </div>
 
       {/* Main Footer */}
-      <div
-        className="footer-main"
-        style={{
-          maxWidth: "1100px",
-          margin: "0 auto",
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "space-between",
-          alignItems: "flex-start",
-          gap: "40px",
-        }}
-      >
+      <div className="footer-main">
         {/* Logo */}
         <div style={{ minWidth: "160px" }}>
-          <span
-            style={{
-              color: "#181e4b",
-              fontWeight: "900",
-              fontSize: "2rem",
-              letterSpacing: "2px",
-            }}
-          >
-            Jadoo.
-          </span>
+          <span style={{ color: "#181e4b", fontWeight: "900", fontSize: "2rem", letterSpacing: "2px" }}>Jadoo.</span>
           <p style={{ color: "#5e6282", margin: "18px 0 0 0", fontSize: "1rem" }}>
             Book your trip in minute, get full control for much longer.
           </p>
         </div>
 
         {/* Footer Links */}
-        <div className="footer-links" style={{ display: "flex", gap: "58px" }}>
+        <div className="footer-links">
           <div>
             <h4 style={{ color: "#181e4b", fontWeight: 700, marginBottom: "1.2rem", fontSize: "1.04rem" }}>Company</h4>
             <ul style={{ listStyle: "none", padding: 0, margin: 0, color: "#5e6282" }}>
@@ -222,7 +195,7 @@ function Footer() {
         </div>
 
         {/* Social */}
-        <div className="footer-social" style={{ minWidth: "180px", textAlign: "center" }}>
+        <div className="footer-social">
           <div style={{ display: "flex", gap: "10px", justifyContent: "center", marginBottom: "15px" }}>
             <img src={fbIcon} alt="facebook" style={{ width: "38px", height: "38px", borderRadius: "50%", cursor: "pointer" }} />
             <img src={igIcon} alt="instagram" style={{ width: "38px", height: "38px", borderRadius: "50%", cursor: "pointer" }} />
@@ -238,7 +211,7 @@ function Footer() {
 
       {/* Copyright */}
       <div style={{ textAlign: "center", color: "#5e6282", fontSize: "0.99rem", marginTop: "60px" }}>
-        All rights reserved@jadoo.co
+        All rights reserved @ jadoo.co
       </div>
     </footer>
   );

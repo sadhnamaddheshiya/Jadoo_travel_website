@@ -5,33 +5,108 @@ import eventsImg from "../assets/events-icon.png";
 import settingsImg from "../assets/settings-icon.png";
 
 const serviceData = [
-  {
-    icon: weatherImg,
-    title: "Calculated Weather",
-    link: " "
-  },
-  {
-    icon: flightsImg,
-    link: " "
-  },
-  {
-    icon: eventsImg,
-    link: " "
-  },
-  {
-    icon: settingsImg,
-    link: " "
-  },
+  { icon: weatherImg, link: " " },
+  { icon: flightsImg, link: " " },
+  { icon: eventsImg, link: " " },
+  { icon: settingsImg, link: " " },
 ];
 
 function Services() {
   return (
-    <section
-      style={{
-        background: "#fff",
-        padding: "3rem 1rem",
-      }}
-    >
+    <section style={{ background: "#fff", padding: "3rem 1rem" }}>
+      <style>
+        {`
+          .services-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+          }
+
+          .service-card {
+            background: #f7fafd;
+            border-radius: 18px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.2s ease;
+            box-shadow: 0 4px 18px rgba(210,205,195,0.08);
+            flex: 1 1 220px; /* flexible width */
+            max-width: 260px;
+          }
+
+          .service-card:nth-child(2) {
+            background: #fff4e3;
+            box-shadow: 0 6px 28px rgba(84,74,66,0.12);
+          }
+
+          .service-card img {
+            width: 100%;
+            max-width: 160px;
+            height: auto;
+            margin: 0 auto;
+          }
+
+          .service-card:nth-child(2) img {
+            max-width: 200px;
+          }
+
+          .service-card h3 {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #211f3e;
+            margin-top: 0.8rem;
+          }
+
+          .service-card p {
+            color: #938b8b;
+            font-size: 1rem;
+            line-height: 1.5;
+          }
+
+          @media (max-width: 1024px) {
+            .service-card {
+              flex: 1 1 45%;
+            }
+            .service-card img {
+              max-width: 140px;
+            }
+            .service-card:nth-child(2) img {
+              max-width: 180px;
+            }
+          }
+
+          @media (max-width: 768px) {
+            .service-card {
+              flex: 1 1 90%;
+            }
+            .service-card img {
+              max-width: 120px;
+            }
+            .service-card:nth-child(2) img {
+              max-width: 150px;
+            }
+          }
+
+          @media (max-width: 480px) {
+            .service-card h3 {
+              font-size: 1rem;
+            }
+            .service-card p {
+              font-size: 0.95rem;
+            }
+            .services-container {
+              gap: 1rem;
+            }
+          }
+
+          .service-card:hover {
+            transform: translateY(-5px);
+          }
+        `}
+      </style>
+
       <div style={{ textAlign: "center", marginBottom: "2.5rem" }}>
         <span
           style={{
@@ -57,30 +132,9 @@ function Services() {
         </h2>
       </div>
 
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
-          gap: "1.5rem",
-          justifyContent: "center",
-          alignItems: "stretch",
-        }}
-      >
+      <div className="services-container">
         {serviceData.map((service, idx) => (
-          <div
-            key={idx}
-            style={{
-              background: idx === 1 ? "#fff4e3" : "#f7fafd",
-              boxShadow:
-                idx === 1
-                  ? "0 6px 28px rgba(84,74,66,0.12)"
-                  : "0 4px 18px rgba(210,205,195,0.08)",
-              borderRadius: "18px",
-              padding: "1.5rem",
-              textAlign: "center",
-              transition: "transform 0.2s ease",
-            }}
-          >
+          <div key={idx} className="service-card">
             <button
               onClick={() => window.open(service.link, "_blank")}
               style={{
@@ -90,35 +144,10 @@ function Services() {
                 cursor: "pointer",
               }}
             >
-              <img
-                src={service.icon}
-                alt={service.title}
-                style={{
-                  width: idx === 1 ? "200px" : "160px",
-                  height: "auto",
-                  maxWidth: "100%",
-                }}
-              />
+              <img src={service.icon} alt={service.title} />
             </button>
-            <h3
-              style={{
-                fontSize: "1.1rem",
-                fontWeight: "bold",
-                color: "#211f3e",
-                marginTop: "0.8rem",
-              }}
-            >
-              {service.title}
-            </h3>
-            <p
-              style={{
-                color: "#938b8b",
-                fontSize: "1rem",
-                lineHeight: "1.5",
-              }}
-            >
-              {service.desc}
-            </p>
+            <h3>{service.title}</h3>
+            <p>{service.desc}</p>
           </div>
         ))}
       </div>
@@ -127,5 +156,3 @@ function Services() {
 }
 
 export default Services;
-
-

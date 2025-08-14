@@ -1,8 +1,9 @@
 import React from "react";
-import greeceImg from "../assets/greece.jpg";
+import greeceImg from "../assets/greece.png";
 import destinationImg from "../assets/destination.png";
 import paymentImg from "../assets/payment.png";
 import airportImg from "../assets/airport.png";
+import romeImg from "../assets/rome.jpg";
 
 function EasySteps() {
   return (
@@ -64,31 +65,53 @@ function EasySteps() {
         {/* Right illustration */}
         <div className="steps-right">
           <div className="trip-card">
-            <img src={greeceImg} alt="Trip to Greece" />
+            <img src={greeceImg} alt="Trip to Greece" className="trip-main-img" />
+            <div className="trip-title">Trip To Greece</div>
+            <div className="trip-subtitle">14-29 June &nbsp;&nbsp;|&nbsp; by Robbin Joseph</div>
+            <div className="trip-icons">
+              <span role="img" aria-label="Leaf">🍃</span>
+              <span role="img" aria-label="Map">🗺️</span>
+              <span role="img" aria-label="Paper plane">✈️</span>
+            </div>
+            <div className="trip-people">
+              <span role="img" aria-label="People">👥</span> 24 people going
+            </div>
+
+            {/* Floating Rome Card */}
+            <div className="floating-card">
+              <img src={romeImg} alt="Rome" className="floating-img" />
+              <div>
+                <div className="floating-title">Trip to Rome</div>
+                <div className="floating-progress-text">
+                  40% completed
+                  <div className="progress-bar">
+                    <div className="progress-fill"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-      <style>
-        {`
+      <style>{`
         .easy-steps-section {
           background: #fff;
           padding: 3rem 1rem 4rem;
-          margin-bottom: 2.5rem;
         }
 
         .easy-steps-container {
           max-width: 1110px;
           margin: 0 auto;
           display: flex;
-          align-items: center;
+          align-items: flex-start;
           gap: 48px;
           flex-wrap: wrap;
         }
 
         .steps-left {
           flex: 1 1 400px;
-          min-width: 300px;
+          min-width: 280px;
         }
 
         .steps-subtitle {
@@ -104,7 +127,7 @@ function EasySteps() {
           font-size: 2.4rem;
           line-height: 1.18;
           color: #181e4b;
-          margin: 0 0 1.8rem 0;
+          margin-bottom: 1.8rem;
         }
 
         .steps-title span {
@@ -123,7 +146,7 @@ function EasySteps() {
           border-radius: 12px;
           width: 56px;
           height: 56px;
-          display: inline-flex;
+          display: flex;
           align-items: center;
           justify-content: center;
         }
@@ -139,34 +162,113 @@ function EasySteps() {
         }
 
         .step p {
-          margin: 7px 0 0 0;
+          margin-top: 0.3rem;
           color: #5e6282;
           font-size: 1.01rem;
         }
 
         .steps-right {
           flex: 1 1 370px;
-          min-width: 290px;
+          min-width: 280px;
           display: flex;
           justify-content: center;
+          position: relative;
         }
 
         .trip-card {
           background: #eef4ff;
-          border-radius: 2.1rem;
+          border-radius: 2rem;
           box-shadow: 0 8px 28px rgba(80,80,80,0.18);
-          padding: 2.1rem 2.2rem 1.1rem;
-        }
-
-        .trip-card img {
+          padding: 2rem;
           width: 100%;
           max-width: 370px;
+          position: relative;
+        }
+
+        .trip-main-img {
+          width: 100%;
           height: auto;
           object-fit: cover;
           border-radius: 1.4rem;
+          margin-bottom: 1rem;
         }
 
-        /* Mobile (≤768px) */
+        .trip-title {
+          font-weight: 700;
+          font-size: 1.18rem;
+          color: #181e4b;
+          margin-bottom: 0.5rem;
+        }
+
+        .trip-subtitle {
+          color: #686d8a;
+          font-size: 0.96rem;
+          margin-bottom: 1rem;
+        }
+
+        .trip-icons {
+          display: flex;
+          gap: 16px;
+          color: #8e93ad;
+          font-size: 1.18rem;
+          margin-bottom: 1rem;
+        }
+
+        .trip-people {
+          color: #686d8a;
+          font-size: 0.96rem;
+        }
+
+        /* Floating Rome card */
+        .floating-card {
+          position: absolute;
+          right: -10%;
+          bottom: 10px;
+          background: #fff;
+          border-radius: 1rem;
+          box-shadow: 0 8px 38px rgba(80,80,80,0.10);
+          padding: 1rem 1.2rem;
+          min-width: 180px;
+          display: flex;
+          align-items: center;
+          gap: 0.8rem;
+        }
+
+        .floating-img {
+          width: 42px;
+          height: 42px;
+          border-radius: 0.6rem;
+          object-fit: cover;
+          border: 2px solid #efefef;
+        }
+
+        .floating-title {
+          font-weight: 700;
+          font-size: 1.12rem;
+          color: #464e5f;
+        }
+
+        .floating-progress-text {
+          font-size: 0.88rem;
+          color: #686d8a;
+        }
+
+        .progress-bar {
+          background: #eef4ff;
+          border-radius: 6px;
+          width: 100%;
+          height: 6px;
+          margin-top: 4px;
+          overflow: hidden;
+        }
+
+        .progress-fill {
+          background: linear-gradient(90deg,#4472ce,#fff4e3 100%);
+          height: 100%;
+          width: 40%;
+        }
+
+        /* Mobile */
         @media (max-width: 768px) {
           .easy-steps-container {
             flex-direction: column;
@@ -175,36 +277,40 @@ function EasySteps() {
           .steps-title {
             font-size: 1.8rem;
           }
-          .trip-card img {
-            height: 250px;
+          .trip-main-img {
+            height: auto;
+          }
+          .floating-card {
+            position: relative;
+            right: 0;
+            bottom: 0;
+            margin-top: 1rem;
           }
         }
 
-        /* Tablet (769px - 1024px) */
+        /* Tablet */
         @media (min-width: 769px) and (max-width: 1024px) {
-          .easy-steps-container {
-            flex-direction: row;
-            gap: 32px;
-          }
           .steps-title {
             font-size: 2rem;
           }
-          .trip-card img {
-            height: 300px;
+          .trip-main-img {
+            height: auto;
+          }
+          .floating-card {
+            right: -5%;
           }
         }
 
-        /* Desktop (≥1025px) */
+        /* Desktop */
         @media (min-width: 1025px) {
           .steps-title {
             font-size: 2.4rem;
           }
-          .trip-card img {
-            height: 350px;
+          .trip-main-img {
+            height: auto;
           }
         }
-        `}
-      </style>
+      `}</style>
     </section>
   );
 }
