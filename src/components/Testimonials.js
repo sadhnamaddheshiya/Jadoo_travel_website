@@ -13,7 +13,7 @@ const testimonialsData = [
     quote:
       "On the Windows talking painted pasture yet its express parties use. Sure last upon he same as knew next. Of believed or diverted no.",
     author: "Chris Thomas",
-    location: "CEO of Red Button",
+    location: "lucknow, India",
   },
 ];
 
