@@ -7,7 +7,7 @@ const testimonialsData = [
     quote:
       "On the Windows talking painted pasture yet its express parties use. Sure last upon he same as knew next. Of believed or diverted no.",
     author: "Mike taylor",
-    location: "Lahore, Pakistan",
+    location: "Delhi, India",
   },
   {
     quote:
